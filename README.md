@@ -85,7 +85,7 @@ indoorPinSDK = new IndoorPinSDK(this, this);
 //PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
 indoorPinSDK.init(indoorPinUser, "PUT_YOUR_API_KEY_HERE");
 ```
-OR
+AND
 ```
 @Override
 protected void onStart() {
