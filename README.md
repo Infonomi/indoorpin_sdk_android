@@ -136,14 +136,8 @@ In your project's AndroidManifest.xml file add the following:
 This will give your application the internet and bluetooth permissions for listening to beacon signals
 
 STEP 6:
-
+```
 didChangeBeacon the function of the object is rotating beacon.
 
 The return value is an object of the nearest beacon object.
-
-
-
-
-
-
-
+```
