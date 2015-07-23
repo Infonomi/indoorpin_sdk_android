@@ -124,7 +124,7 @@ public void didChangeBeacon(IndoorPinBeacon indoorPinBeacon) {
 ```
 This will display the current floor plan with blue circle on it.
 
-STEP 5:
+**STEP 5:**
 
 In your project's AndroidManifest.xml file add the following:
 ```
@@ -135,7 +135,7 @@ In your project's AndroidManifest.xml file add the following:
 ```	
 This will give your application the internet and bluetooth permissions for listening to beacon signals
 
-STEP 6:
+**STEP 6:**
 ```
 didChangeBeacon the function of the object is rotating beacon.
 
