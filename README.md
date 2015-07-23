@@ -117,9 +117,9 @@ setContentView(indoorNavigationView);
 ...
 
 @Override
-public void didChangeBeacon(IndoorPinBeacon arg0) {
+public void didChangeBeacon(IndoorPinBeacon indoorPinBeacon) {
 	// TODO Auto-generated method stub
-	iPNavigationView.didChangeBeacon(arg0);
+	iPNavigationView.didChangeBeacon(indoorPinBeacon);
 }
 ```
 This will display the current floor plan with blue circle on it.
@@ -137,6 +137,9 @@ This will give your application the internet and bluetooth permissions for liste
 
 STEP 6:
 
+didChangeBeacon the function of the object is rotating beacon.
+
+The return value is an object of the nearest beacon object.
 
 
 
