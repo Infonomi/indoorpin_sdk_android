@@ -23,13 +23,19 @@ public class MainActivity extends Activity {
 		iPNavigationView = new IPNavigationView(getApplicationContext());
 		setContentView(iPNavigationView.getView());
 		
-		indoorPinUser = new IndoorPinUser(null, "Ýbrahim", "Gündüz", 
-				"http://www.cincinnatihornets.com/wp-content/uploads/2014/04/facebook-default-no-profile-pic.jpg", 
-				"igunduz91@gmail.com", "M", "1991-02-19");
+		indoorPinUser = new IndoorPinUser(
+				null, //Fill this if you want to track the customer with your own database customer id. If this is the case, you should set userDB tof your application to YES in CMS
+				"Taylor", 
+				"Swift", 
+				"http://topnews.in/light/files/taylor-swift_6.jpg?1424841363", 
+				"taylorswift@gmail.com", 
+				IndoorPinUser.IPGENDER_FEMALE, 
+				"1980-01-30" // "yyyy-mm-dd"
+		); 
 		
 		indoorPinSDK = new IndoorPinSDK(this, iPNavigationView);
-		indoorPinSDK.init(indoorPinUser, "36e5ecb5-2ffe-4256-b435-41f838a3e23b");
-		
+		//PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
+		indoorPinSDK.init(indoorPinUser, "PUT_YOUR_API_KEY_HERE");
 	}
 	
 	@Override
@@ -54,12 +60,12 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		IndoorPinSDK.bind = true; 
+		IndoorPinSDK.bind = true; //if the application is running in the foreground, popups can be displayed.
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		IndoorPinSDK.bind = false; 
+		IndoorPinSDK.bind = false; //if the application is running in the background, notification can be displayed.
 	} 
 }
