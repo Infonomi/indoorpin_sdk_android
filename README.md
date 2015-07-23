@@ -74,4 +74,73 @@ indoorPinUser = new IndoorPinUser(
 				"1980-01-30" // "yyyy-mm-dd"
 		); 
 ```
+```
+All of the user data are optional values. If you do not provide name/surname the user will be displayed as anonymous user. If you want to track your users with the userId that you already have in your own database, then fill in the userId and select userDB=yes for your application in CMS else leave it empty.
+```
+**STEP 3:**
+
+Initialize sdk with the following code:
+```
+indoorPinSDK = new IndoorPinSDK(this, this);
+//PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
+indoorPinSDK.init(indoorPinUser, "PUT_YOUR_API_KEY_HERE");
+```
+OR
+```
+@Override
+protected void onStart() {
+	super.onStart();
+	IndoorPinSDK.bind = true; //if the application is running in the foreground, popups can be displayed.
+}
+
+@Override
+protected void onStop() {
+	super.onStop();
+	IndoorPinSDK.bind = false; //if the application is running in the background, notification can be displayed.
+}
+```
+You should implement IndoorPinDelegate in the Activity or Fragment file
+
+**STEP 4:**
+
+If you want to add the indoornavigation module :
+```
+...
+IPNavigationView iPNavigationView = new IPNavigationView(getApplicationContext());
+View indoorNavigationView = iPNavigationView.getView();
+setContentView(indoorNavigationView); 
+//rootView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); 
+//rootView.addView(indoorNavigationView)
+//OR
+//layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); 
+//layout.addView(indoorNavigationView)
+...
+
+@Override
+public void didChangeBeacon(IndoorPinBeacon arg0) {
+	// TODO Auto-generated method stub
+	iPNavigationView.didChangeBeacon(arg0);
+}
+```
+This will display the current floor plan with blue circle on it.
+
+STEP 5:
+
+In your project's AndroidManifest.xml file add the following:
+```
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+```	
+This will give your application the internet and bluetooth permissions for listening to beacon signals
+
+STEP 6:
+
+
+
+
+
+
+
 
