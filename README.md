@@ -109,8 +109,6 @@ If you want to add the indoornavigation module :
 IPNavigationView iPNavigationView = new IPNavigationView(getApplicationContext());
 View indoorNavigationView = iPNavigationView.getView();
 setContentView(indoorNavigationView); 
-//rootView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); 
-//rootView.addView(indoorNavigationView)
 //OR
 //layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); 
 //layout.addView(indoorNavigationView)
