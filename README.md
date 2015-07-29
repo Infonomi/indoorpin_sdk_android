@@ -92,7 +92,7 @@ indoorPinSDK.init(indoorPinUser, PUT_YOUR_API_KEY_HERE, new IPCallback() {
 	}
 });
 ```
-AND
+**STEP 4:**
 ```
 @Override
 protected void onStart() {
@@ -108,7 +108,7 @@ protected void onStop() {
 ```
 You should implement IndoorPinDelegate in the Activity or Fragment file
 
-**STEP 4:**
+**STEP 5:**
 
 If you want to add the indoornavigation module :
 ```
@@ -134,7 +134,7 @@ public void didChangeBeacon(IndoorPinBeacon indoorPinBeacon) {
 ```
 This will display the current floor plan with blue circle on it.
 
-**STEP 5:**
+**STEP 6:**
 
 In your project's AndroidManifest.xml file add the following:
 ```
@@ -144,10 +144,3 @@ In your project's AndroidManifest.xml file add the following:
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
 ```	
 This will give your application the internet and bluetooth permissions for listening to beacon signals
-
-**STEP 6:**
-```
-didChangeBeacon the function of the object is rotating beacon.
-
-The return value is an object of the nearest beacon object.
-```
