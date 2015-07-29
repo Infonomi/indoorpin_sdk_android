@@ -58,7 +58,7 @@ In CMS analytics page, you will be able to see heatmap and analytics data in dif
 
 **STEP 1:**
 ```
-Add the jar files in your project folder libs
+Copy the libs/jar files from indoorpin_sdk_android and paste them to your libs folder
 ```
 **STEP 2:**
 
