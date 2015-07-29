@@ -32,7 +32,7 @@ Add a campaign in Campaign page in CMS. Select the beacon device you created in 
 
 **STEP 6:**
 ```
-Open SampleApp
+Open Eclipse, File > Import > Existing Android Code Into Workspace > Select Project Folder > Finish
 ```
 
 **STEP 7:**
