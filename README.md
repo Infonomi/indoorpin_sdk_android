@@ -93,6 +93,7 @@ indoorPinSDK.init(indoorPinUser, PUT_YOUR_API_KEY_HERE, new IPCallback() {
 });
 ```
 **STEP 4:**
+Activity or Fragment onStart and onStop method override
 ```
 @Override
 protected void onStart() {
