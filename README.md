@@ -83,7 +83,14 @@ Initialize sdk with the following code:
 ```
 indoorPinSDK = new IndoorPinSDK(this, this);
 //PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
-indoorPinSDK.init(indoorPinUser, "PUT_YOUR_API_KEY_HERE");
+indoorPinSDK.init(indoorPinUser, PUT_YOUR_API_KEY_HERE, new IPCallback() {
+	
+	@Override
+	public void successful() {
+		// TODO Auto-generated method stub
+		
+	}
+});
 ```
 AND
 ```
@@ -106,12 +113,17 @@ You should implement IndoorPinDelegate in the Activity or Fragment file
 If you want to add the indoornavigation module :
 ```
 ...
-IPNavigationView iPNavigationView = new IPNavigationView(getApplicationContext());
-View indoorNavigationView = iPNavigationView.getView();
-setContentView(indoorNavigationView); 
-//OR
-//layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); 
-//layout.addView(indoorNavigationView)
+indoorPinSDK = new IndoorPinSDK(this, this);
+//PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
+indoorPinSDK.init(indoorPinUser, "36e5ecb5-2ffe-4256-b435-41f838a3e23b", new IPCallback() {
+	@Override
+	public void successful() {
+		// TODO Auto-generated method stub
+		iPNavigationView = new IPNavigationView(a, null);
+		setContentView(iPNavigationView.getView());
+		//|| rootView.addView(indoorNavigationView) || layout.addView(indoorNavigationView)
+	}
+});
 ...
 
 @Override
