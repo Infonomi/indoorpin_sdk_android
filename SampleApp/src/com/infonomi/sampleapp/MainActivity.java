@@ -1,27 +1,30 @@
 package com.infonomi.sampleapp;
 
-import com.infonomi.indoorpin.sdk.IPNavigationView; 
+import com.infonomi.indoorpin.sdk.IPFloorPlanView;
 import com.infonomi.indoorpin.sdk.IndoorPinSDK;
+import com.infonomi.indoorpin.sdk.delegate.IPCallback;
+import com.infonomi.indoorpin.sdk.delegate.IndoorPinDelegate;
+import com.infonomi.indoorpin.sdk.model.IndoorPinBeacon;
 import com.infonomi.indoorpin.sdk.model.IndoorPinUser;
 
 import android.app.Activity; 
-import android.os.Bundle; 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem; 
+import android.view.MenuItem;
+import android.view.View; 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements IndoorPinDelegate {
 	private IndoorPinSDK indoorPinSDK;
 	private IndoorPinUser indoorPinUser;
-	private IPNavigationView iPNavigationView;
+	private IPFloorPlanView iPNavigationView;
+	private Activity a;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
-		
-		
-		iPNavigationView = new IPNavigationView(getApplicationContext());
-		setContentView(iPNavigationView.getView());
+		a = this;
 		
 		indoorPinUser = new IndoorPinUser(
 				null, //Fill this if you want to track the customer with your own database customer id. If this is the case, you should set userDB tof your application to YES in CMS
@@ -33,9 +36,19 @@ public class MainActivity extends Activity {
 				"1980-01-30" // "yyyy-mm-dd"
 		); 
 		
-		indoorPinSDK = new IndoorPinSDK(this, iPNavigationView);
+		indoorPinSDK = new IndoorPinSDK(this, this);
 		//PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
-		indoorPinSDK.init(indoorPinUser, "PUT_YOUR_API_KEY_HERE");
+		indoorPinSDK.init(indoorPinUser, "36e5ecb5-2ffe-4256-b435-41f838a3e23b", new IPCallback() {
+			
+			@Override
+			public void successful() {
+				// TODO Auto-generated method stub
+				iPNavigationView = new IPFloorPlanView(a, null);
+				setContentView(iPNavigationView.getView());
+				//|| rootView.addView(indoorNavigationView) || layout.addView(indoorNavigationView)
+				
+			}
+		});
 	}
 	
 	@Override
@@ -52,6 +65,7 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -67,5 +81,10 @@ public class MainActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 		IndoorPinSDK.bind = false; //if the application is running in the background, notification can be displayed.
-	} 
+	}
+
+	@Override
+	public void didChangeBeacon(IndoorPinBeacon ipBeacon) {
+		// TODO Auto-generated method stub
+	}
 }
