@@ -32,7 +32,7 @@ Add a campaign in Campaign page in CMS. Select the beacon device you created in 
 
 **STEP 6:**
 ```
-Open SampleApp
+Open Eclipse, File > Import > Existing Android Code Into Workspace > Select Project Folder > Finish
 ```
 
 **STEP 7:**
@@ -58,7 +58,7 @@ In CMS analytics page, you will be able to see heatmap and analytics data in dif
 
 **STEP 1:**
 ```
-Add the jar files in your project folder libs
+Copy the libs/jar files from indoorpin_sdk_android and paste them to your libs folder
 ```
 **STEP 2:**
 
@@ -83,9 +83,17 @@ Initialize sdk with the following code:
 ```
 indoorPinSDK = new IndoorPinSDK(this, this);
 //PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
-indoorPinSDK.init(indoorPinUser, "PUT_YOUR_API_KEY_HERE");
+indoorPinSDK.init(indoorPinUser, PUT_YOUR_API_KEY_HERE, new IPCallback() {
+	
+	@Override
+	public void successful() {
+		// TODO Auto-generated method stub
+		
+	}
+});
 ```
-AND
+**STEP 4:**
+Activity or Fragment onStart and onStop method override
 ```
 @Override
 protected void onStart() {
@@ -101,17 +109,22 @@ protected void onStop() {
 ```
 You should implement IndoorPinDelegate in the Activity or Fragment file
 
-**STEP 4:**
+**STEP 5:**
 
 If you want to add the indoornavigation module :
 ```
 ...
-IPNavigationView iPNavigationView = new IPNavigationView(getApplicationContext());
-View indoorNavigationView = iPNavigationView.getView();
-setContentView(indoorNavigationView); 
-//OR
-//layout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); 
-//layout.addView(indoorNavigationView)
+indoorPinSDK = new IndoorPinSDK(this, this);
+//PUT_YOUR_API_KEY_HERE  You can see your Api Key in CMS Applications page
+indoorPinSDK.init(indoorPinUser, "36e5ecb5-2ffe-4256-b435-41f838a3e23b", new IPCallback() {
+	@Override
+	public void successful() {
+		// TODO Auto-generated method stub
+		iPNavigationView = new IPNavigationView(a, null);
+		setContentView(iPNavigationView.getView());
+		//|| rootView.addView(indoorNavigationView) || layout.addView(indoorNavigationView)
+	}
+});
 ...
 
 @Override
@@ -122,7 +135,7 @@ public void didChangeBeacon(IndoorPinBeacon indoorPinBeacon) {
 ```
 This will display the current floor plan with blue circle on it.
 
-**STEP 5:**
+**STEP 6:**
 
 In your project's AndroidManifest.xml file add the following:
 ```
@@ -132,10 +145,3 @@ In your project's AndroidManifest.xml file add the following:
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
 ```	
 This will give your application the internet and bluetooth permissions for listening to beacon signals
-
-**STEP 6:**
-```
-didChangeBeacon the function of the object is rotating beacon.
-
-The return value is an object of the nearest beacon object.
-```
